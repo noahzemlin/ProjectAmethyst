@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Setting.cs" />
     <Compile Include="FileHandle.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -103,9 +104,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
