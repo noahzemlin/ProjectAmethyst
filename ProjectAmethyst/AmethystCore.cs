@@ -6,14 +6,27 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+class Champion {
+    public readonly string id;
+    public readonly string name;
+
+    public Champion(string id, string name)
+    {
+        this.id = id;
+        this.name = name;
+    }
+}
+
 namespace ProjectAmethyst
 {
     public static class AmethystCore
     {
         public static Random rng = new Random();
 
-        private static List<string> champions = new List<string>();
-        private static string currentChampion = "";
+        private static List<string> champs = new List<string>();
+        private static Dictionary<string, Champion> champData = new Dictionary<string, Champion>();
+
+        private static string currChampId = "";
         private static string version = "";
 
         public static void LoadChampions()
@@ -39,19 +52,27 @@ namespace ProjectAmethyst
 
             foreach(dynamic champ in jsondata)
             {
-                champions.Add(champ.Name);
+                Champion champValues = new Champion(champ.Value.id.Value, champ.Value.name.Value);
+                champs.Add(champ.Value.id.Value);
+                champData.Add(champ.Value.id.Value, champValues);
             }
+
         }
 
         public static string GetNewChampion()
         {
-            currentChampion = champions[rng.Next(champions.Count)];
-            return currentChampion;
+            currChampId = champs[rng.Next(champs.Count)];
+            return currChampId;
         }
 
         public static string GetCurrentChampion()
         {
-            return currentChampion;
+            return currChampId;
+        }
+
+        public static string GetName(string id)
+        {
+            return champData[id].name;
         }
 
         public static string GetVersion()

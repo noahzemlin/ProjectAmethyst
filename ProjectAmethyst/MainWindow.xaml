@@ -6,16 +6,12 @@
         xmlns:local="clr-namespace:ProjectAmethyst"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Project Amethyst" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="genChamp" Content="Get Random Champion" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="145" Click="genChamp_Click"/>
-        <Grid x:Name="champGrid" Margin="0,35,0,0" Height="284" HorizontalAlignment="Center" Visibility="Visible">
-            <Image x:Name="champImage" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-            <Label x:Name="champName" Content="Aatrox" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Width="402" FontFamily="Century Gothic" FontSize="36"/>
-            <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="4" Margin="10,115,0,0" VerticalAlignment="Top" Width="497" Background="#FF727272"/>
-            <Button x:Name="buttonLAL" Content="Lolalytics" HorizontalAlignment="Left" Margin="211,140,0,0" VerticalAlignment="Top" Width="100" Click="buttonLAL_Click"/>
-            <Button x:Name="buttonOPGG" Content="OP.GG" HorizontalAlignment="Left" Margin="211,190,0,0" VerticalAlignment="Top" Width="100" Click="buttonOPGG_Click"/>
-            <Button x:Name="buttonCGG" Content="Champion.GG" HorizontalAlignment="Left" Margin="211,239,0,0" VerticalAlignment="Top" Width="100" Click="buttonCGG_Click"/>
-        </Grid>
+        <Menu VerticalAlignment="Top" Height="30">
+            <MenuItem x:Name="menuMain" Header="Main" Height="30" Click="menuMain_Click"/>
+            <MenuItem x:Name="menuGroups" Header="Edit Groups" Height="30" Click="menuGroups_Click"/>
+        </Menu>
+        <Frame x:Name="Main" Margin="0,30,0,0" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
