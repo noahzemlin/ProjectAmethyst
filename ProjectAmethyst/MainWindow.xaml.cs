@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ProjectAmethyst
 {
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
 
-        private bool invisible = true;
+        private MainPage mainPage = new MainPage();
+        private GroupEditor groupEditor = new GroupEditor();
 
         public MainWindow()
         {
@@ -32,54 +30,17 @@ namespace ProjectAmethyst
 
             InitializeComponent();
 
-            ((Grid)this.FindName("champGrid")).Visibility = Visibility.Hidden;
+            Main.Content = mainPage;
         }
 
-
-        private void genChamp_Click(object sender, RoutedEventArgs e)
+        private void menuMain_Click(object sender, RoutedEventArgs e)
         {
-            string currChampion = AmethystCore.GetNewChampion();
-            string version = AmethystCore.GetVersion();
-
-            ((Label)this.FindName("champName")).Content = currChampion;
-
-            BitmapImage logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri("http://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/" + currChampion + ".png");
-            logo.EndInit();
-
-            ((Image)this.FindName("champImage")).Source = logo;
-
-            if (invisible)
-            {
-                invisible = false;
-                ((Grid)this.FindName("champGrid")).Visibility = Visibility.Visible;
-            }
+            Main.Content = mainPage;
         }
 
-        private void buttonLAL_Click(object sender, RoutedEventArgs e)
+        private void menuGroups_Click(object sender, RoutedEventArgs e)
         {
-            openURL("https://lolalytics.com/champion/" + AmethystCore.GetCurrentChampion() + "/");
+            Main.Content = groupEditor;
         }
-
-        private void buttonOPGG_Click(object sender, RoutedEventArgs e)
-        {
-            openURL("https://op.gg/champion/" + AmethystCore.GetCurrentChampion() + "/");
-        }
-
-        private void buttonCGG_Click(object sender, RoutedEventArgs e)
-        {
-            openURL("http://champion.gg/champion/" + AmethystCore.GetCurrentChampion() + "/");
-        }
-
-        private void openURL(String url)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(url);
-            }
-            catch { }
-        }
-
     }
 }
