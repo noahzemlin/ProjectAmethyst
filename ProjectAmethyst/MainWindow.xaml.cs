@@ -32,19 +32,20 @@ namespace ProjectAmethyst
 
             InitializeComponent();
 
-
+            ((Grid)this.FindName("champGrid")).Visibility = Visibility.Hidden;
         }
 
 
         private void genChamp_Click(object sender, RoutedEventArgs e)
         {
-            AmethystCore.GetChampion();
+            string currChampion = AmethystCore.GetNewChampion();
+            string version = AmethystCore.GetVersion();
 
-            ((Label)this.FindName("champName")).Content = AmethystCore.currentChampion;
+            ((Label)this.FindName("champName")).Content = currChampion;
 
             BitmapImage logo = new BitmapImage();
             logo.BeginInit();
-            logo.UriSource = new Uri("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/" + AmethystCore.currentChampion + ".png");
+            logo.UriSource = new Uri("http://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/" + currChampion + ".png");
             logo.EndInit();
 
             ((Image)this.FindName("champImage")).Source = logo;
@@ -58,17 +59,17 @@ namespace ProjectAmethyst
 
         private void buttonLAL_Click(object sender, RoutedEventArgs e)
         {
-            openURL("https://lolalytics.com/champion/" + AmethystCore.currentChampion + "/");
+            openURL("https://lolalytics.com/champion/" + AmethystCore.GetCurrentChampion() + "/");
         }
 
         private void buttonOPGG_Click(object sender, RoutedEventArgs e)
         {
-            openURL("https://op.gg/champion/" + AmethystCore.currentChampion + "/");
+            openURL("https://op.gg/champion/" + AmethystCore.GetCurrentChampion() + "/");
         }
 
         private void buttonCGG_Click(object sender, RoutedEventArgs e)
         {
-            openURL("http://champion.gg/champion/" + AmethystCore.currentChampion + "/");
+            openURL("http://champion.gg/champion/" + AmethystCore.GetCurrentChampion() + "/");
         }
 
         private void openURL(String url)

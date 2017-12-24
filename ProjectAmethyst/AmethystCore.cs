@@ -10,24 +10,31 @@ namespace ProjectAmethyst
 {
     public static class AmethystCore
     {
-        public static string currentChampion = "";
-
         public static Random rng = new Random();
 
         private static List<string> champions = new List<string>();
+        private static string currentChampion = "";
+        private static string version = "";
 
         public static void LoadChampions()
         {
 
             string jsonRaw;
+            dynamic json;
 
             using (WebClient wc = new WebClient())
             {
-                jsonRaw = wc.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.24.2/data/en_US/champion.json");
+                jsonRaw = wc.DownloadString("https://ddragon.leagueoflegends.com/realms/na.json");
+                json = JsonConvert.DeserializeObject(jsonRaw);
+                version = json.v;
             }
 
-            dynamic json = JsonConvert.DeserializeObject(jsonRaw);
+            using (WebClient wc = new WebClient())
+            {
+                jsonRaw = wc.DownloadString("http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json");
+            }
 
+            json = JsonConvert.DeserializeObject(jsonRaw);
             dynamic jsondata = json.data;
 
             foreach(dynamic champ in jsondata)
@@ -36,9 +43,20 @@ namespace ProjectAmethyst
             }
         }
 
-        public static void GetChampion()
+        public static string GetNewChampion()
         {
             currentChampion = champions[rng.Next(champions.Count)];
+            return currentChampion;
+        }
+
+        public static string GetCurrentChampion()
+        {
+            return currentChampion;
+        }
+
+        public static string GetVersion()
+        {
+            return version;
         }
     }
 }
