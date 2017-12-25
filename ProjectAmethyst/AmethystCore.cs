@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-class Champion {
+public class Champion {
     public readonly string id;
     public readonly string name;
 
@@ -14,6 +14,11 @@ class Champion {
     {
         this.id = id;
         this.name = name;
+    }
+
+    public override string ToString()
+    {
+        return name;
     }
 }
 
@@ -57,11 +62,19 @@ namespace ProjectAmethyst
                 champData.Add(champ.Value.id.Value, champValues);
             }
 
+            Console.WriteLine("champs loaded");
         }
 
         public static string GetNewChampion()
         {
-            currChampId = champs[rng.Next(champs.Count)];
+            ChampionGroup group = ChampionGroup.selected;
+            if (group == null)
+            {
+                currChampId = champs[rng.Next(champs.Count)];
+            } else
+            {
+                currChampId = group.GetRandom();
+            }
             return currChampId;
         }
 
@@ -78,6 +91,11 @@ namespace ProjectAmethyst
         public static string GetVersion()
         {
             return version;
+        }
+
+        public static List<Champion> GetChampList()
+        {
+            return champData.Values.ToList<Champion>();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ProjectAmethyst
     {
 
         private MainPage mainPage = new MainPage();
-        private GroupEditor groupEditor = new GroupEditor();
+        private GroupEditor groupEditor;
 
         public MainWindow()
         {
@@ -41,6 +41,10 @@ namespace ProjectAmethyst
 
         private void menuGroups_Click(object sender, RoutedEventArgs e)
         {
+            if (groupEditor == null)
+            {
+                groupEditor = new GroupEditor();
+            }
             Main.Content = groupEditor;
         }
     }

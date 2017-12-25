@@ -83,5 +83,25 @@ namespace ProjectAmethyst
             Settings.saveSettings();
         }
 
+        private void poolList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (poolList.SelectedValue == null) return;
+            if(poolList.SelectedValue.ToString() == "All Champions") {
+                ChampionGroup.selected = null;
+            } else
+            {
+                ChampionGroup.selected = (ChampionGroup)poolList.SelectedValue;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            poolList.Items.Clear();
+            poolList.Items.Add("All Champions");
+            foreach (ChampionGroup group in ChampionGroup.groups)
+            {
+                poolList.Items.Add(group);
+            }
+        }
     }
 }

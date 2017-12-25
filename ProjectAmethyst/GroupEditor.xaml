@@ -5,10 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectAmethyst"
       mc:Ignorable="d" 
-      d:DesignHeight="320" d:DesignWidth="525"
+      d:DesignHeight="291" d:DesignWidth="525"
       Title="GroupEditor">
 
     <Grid>
-        
+        <ComboBox x:Name="groupList" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="groupList_SelectionChanged" />
+        <ComboBox x:Name="champList" HorizontalAlignment="Left" Margin="355,10,0,0" VerticalAlignment="Top" Width="160" KeyDown="champList_KeyDown"/>
+        <ListBox x:Name="champListBox" HorizontalAlignment="Left" Height="300" Margin="175,10,0,0" VerticalAlignment="Top" Width="175"/>
+        <Button x:Name="addChamp" Content="Add Champ" HorizontalAlignment="Left" Margin="355,37,0,0" VerticalAlignment="Top" Width="120" Click="addChamp_Click"/>
+        <Button x:Name="removeChamp" Content="Remove Champ" HorizontalAlignment="Left" Margin="355,263,0,0" VerticalAlignment="Top" Width="120" Click="removeChamp_Click"/>
+        <Button x:Name="addGroup" Content="Add Group" HorizontalAlignment="Left" Margin="50,238,0,0" VerticalAlignment="Top" Width="120" Click="addGroup_Click"/>
+        <Button x:Name="removeGroup" Content="Remove Group" HorizontalAlignment="Left" Margin="50,263,0,0" VerticalAlignment="Top" Width="120" Click="removeGroup_Click"/>
+        <TextBox x:Name="groupName"  HorizontalAlignment="Left" Height="23" Margin="50,210,0,0" TextWrapping="Wrap" Text="Group Name" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>
