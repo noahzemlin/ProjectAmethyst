@@ -38,17 +38,18 @@ namespace ProjectAmethyst
         private void addChamp_Click(object sender, RoutedEventArgs e)
         {
             Champion champ = getSelectedChampion();
-            if (champListBox.Items.Contains(champ)) { return; }
+            ChampionGroup champGroup = getSelectedChampionGroup();
+
+            if (champ == null || champGroup == null || champListBox.Items.Contains(champ)) { return; }
 
             champListBox.Items.Add(champ);
-
-            ChampionGroup champGroup = getSelectedChampionGroup();
             champGroup.AddChamp(champ);
         }
 
         private void removeChamp_Click(object sender, RoutedEventArgs e)
         {
             Champion champ = champListBox.SelectedValue as Champion;
+            if (champ == null) { return; }
             if (!champListBox.Items.Contains(champ)) { return;  }
 
             champListBox.Items.Remove(champ);
@@ -69,11 +70,19 @@ namespace ProjectAmethyst
 
         private Champion getSelectedChampion()
         {
+            if (champList.SelectedValue == null)
+            {
+                return null;
+            }
             return ((ComboBoxItem)champList.SelectedValue).Content as Champion;
         }
 
         private ChampionGroup getSelectedChampionGroup()
         {
+            if (groupList.SelectedValue == null)
+            {
+                return null;
+            }
             return ((ComboBoxItem)groupList.SelectedValue).Content as ChampionGroup;
         }
 
@@ -89,7 +98,7 @@ namespace ProjectAmethyst
 
             ComboBoxItem item = new ComboBoxItem();
             item.Content = group;
-            if (groupList.SelectedIndex == -1) item.IsSelected = true;
+            item.IsSelected = true;
             groupList.Items.Add(item);
         }
 
@@ -100,12 +109,14 @@ namespace ProjectAmethyst
 
             groupList.Items.Remove((ComboBoxItem)groupList.SelectedItem);
 
-            if (groupList.Items.Count > 0) {
-                ((ComboBoxItem)groupList.Items[0]).IsSelected = true;
-            }
-
             ChampionGroup.groups.Remove(group);
 
+            if (groupList.Items.Count > 0)
+            {
+                ((ComboBoxItem)groupList.Items[0]).IsSelected = true;
+            } else {
+                champListBox.Items.Clear();
+            }
         }
 
         private void champList_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

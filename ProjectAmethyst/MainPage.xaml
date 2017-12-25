@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectAmethyst"
         mc:Ignorable="d" 
-        d:DesignHeight="291" d:DesignWidth="525"
+        d:DesignHeight="281" d:DesignWidth="509"
         Title="Project Amethyst"
         Loaded="Page_Loaded"
         >
     <Grid Height="291">
         <Button x:Name="genChamp" Content="Get Random Champion" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="145" Click="genChamp_Click"/>
-        <Grid x:Name="champGrid" Margin="0,35,0,0" HorizontalAlignment="Center" Visibility="Visible" Width="525">
+        <Grid x:Name="champGrid" Margin="10,35,10,10" HorizontalAlignment="Center" Visibility="Visible" Width="489">
             <Image x:Name="champImage" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-            <Label x:Name="champName" Content="Aatrox" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Width="402" FontFamily="Century Gothic" FontSize="36"/>
-            <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="4" Margin="10,115,0,0" VerticalAlignment="Top" Width="497" Background="#FF727272"/>
-            <Button x:Name="buttonLAL" Content="Lolalytics" HorizontalAlignment="Left" Margin="211,124,0,0" VerticalAlignment="Top" Width="100" Click="buttonLAL_Click"/>
-            <Button x:Name="buttonOPGG" Content="OP.GG" HorizontalAlignment="Left" Margin="211,149,0,0" VerticalAlignment="Top" Width="100" Click="buttonOPGG_Click"/>
-            <Button x:Name="buttonCGG" Content="Champion.GG" HorizontalAlignment="Left" Margin="211,174,0,0" VerticalAlignment="Top" Width="100" Click="buttonCGG_Click"/>
-            <Button Content="Save Settings" HorizontalAlignment="Left" Margin="421,53,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings"/>
+            <Label x:Name="champName" Content="Aatrox" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Width="374" FontFamily="Century Gothic" FontSize="36"/>
+            <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="4" Margin="0,115,0,0" VerticalAlignment="Top" Width="489" Background="#FF727272"/>
+            <Button x:Name="buttonLAL" Content="Lolalytics" HorizontalAlignment="Left" Margin="196,124,0,0" VerticalAlignment="Top" Width="100" Click="buttonLAL_Click"/>
+            <Button x:Name="buttonOPGG" Content="OP.GG" HorizontalAlignment="Left" Margin="196,149,0,0" VerticalAlignment="Top" Width="100" Click="buttonOPGG_Click"/>
+            <Button x:Name="buttonCGG" Content="Champion.GG" HorizontalAlignment="Left" Margin="196,174,0,0" VerticalAlignment="Top" Width="100" Click="buttonCGG_Click"/>
+            <Button Content="Save Settings" HorizontalAlignment="Left" Margin="414,69,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings"/>
         </Grid>
-        <ComboBox x:Name="poolList" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="poolList_SelectionChanged"/>
-        <Label x:Name="poolLabel" Content="Pool" HorizontalAlignment="Left" Margin="360,10,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="20" Width="35"/>
+        <ComboBox x:Name="poolList" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="poolList_SelectionChanged"/>
+        <Label x:Name="poolLabel" Content="Pool" HorizontalAlignment="Left" Margin="339,10,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="20" Width="35"/>
     </Grid>
 </Page>
