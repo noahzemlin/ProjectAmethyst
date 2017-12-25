@@ -16,6 +16,7 @@
             <Button x:Name="buttonLAL" Content="Lolalytics" HorizontalAlignment="Left" Margin="211,124,0,0" VerticalAlignment="Top" Width="100" Click="buttonLAL_Click"/>
             <Button x:Name="buttonOPGG" Content="OP.GG" HorizontalAlignment="Left" Margin="211,149,0,0" VerticalAlignment="Top" Width="100" Click="buttonOPGG_Click"/>
             <Button x:Name="buttonCGG" Content="Champion.GG" HorizontalAlignment="Left" Margin="211,174,0,0" VerticalAlignment="Top" Width="100" Click="buttonCGG_Click"/>
+            <Button Content="Save Settings" HorizontalAlignment="Left" Margin="421,53,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings"/>
         </Grid>
     </Grid>
 </Page>

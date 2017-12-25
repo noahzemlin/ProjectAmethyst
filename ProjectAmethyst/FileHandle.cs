@@ -62,7 +62,7 @@ namespace ProjectAmethyst
             }
         }
 
-        public static void writeSettings()
+        public static void writeSettings(String toWrite)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace ProjectAmethyst
                 StreamWriter sw = new StreamWriter(_LOCATION + _FILENAME);
 
                 //Write a line of text
-                sw.WriteLine("Hello World!!");
+                sw.WriteLine(toWrite);
 
                 //Write a second line of text
                 sw.WriteLine("From the StreamWriter class");

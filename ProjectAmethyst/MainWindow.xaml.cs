@@ -27,6 +27,7 @@ namespace ProjectAmethyst
         {
 
             AmethystCore.LoadChampions();
+            Settings.init();
 
             InitializeComponent();
 

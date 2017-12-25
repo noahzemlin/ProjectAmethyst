@@ -78,5 +78,10 @@ namespace ProjectAmethyst
             catch { }
         }
 
+        private void saveSettings(object sender, RoutedEventArgs e)
+        {
+            Settings.saveSettings();
+        }
+
     }
 }
