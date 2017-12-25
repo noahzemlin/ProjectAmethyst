@@ -102,6 +102,7 @@ namespace ProjectAmethyst
             {
                 poolList.Items.Add(group);
             }
+            poolList.SelectedIndex = 0;
         }
     }
 }

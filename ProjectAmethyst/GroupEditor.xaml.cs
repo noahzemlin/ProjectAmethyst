@@ -124,11 +124,11 @@ namespace ProjectAmethyst
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 Champion champ = getSelectedChampion();
-                if (champListBox.Items.Contains(champ)) { return; }
+                ChampionGroup champGroup = getSelectedChampionGroup();
+
+                if (champ == null || champGroup == null || champListBox.Items.Contains(champ)) { return; }
 
                 champListBox.Items.Add(champ);
-
-                ChampionGroup champGroup = getSelectedChampionGroup();
                 champGroup.AddChamp(champ);
             };
         }
