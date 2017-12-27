@@ -11,6 +11,7 @@
         <Menu VerticalAlignment="Top" Height="30">
             <MenuItem x:Name="menuMain" Header="Main" Height="30" Click="menuMain_Click"/>
             <MenuItem x:Name="menuGroups" Header="Edit Groups" Height="30" Click="menuGroups_Click"/>
+            <MenuItem x:Name="menuSettings" Header="Settings" Height="30" Click="menuSettings_Click"/>
         </Menu>
         <Frame x:Name="Main" Margin="0,30,0,0" NavigationUIVisibility="Hidden"/>
     </Grid>

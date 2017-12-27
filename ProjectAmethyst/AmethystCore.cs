@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+[Serializable]
 public class Champion {
     public readonly string id;
     public readonly string name;
@@ -63,6 +64,9 @@ namespace ProjectAmethyst
             }
 
             Console.WriteLine("champs loaded");
+
+            FileHandle.checkDirectory();
+            FileHandle.checkChamps();
         }
 
         public static string GetNewChampion()

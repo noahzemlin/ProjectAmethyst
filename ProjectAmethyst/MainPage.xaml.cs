@@ -78,11 +78,6 @@ namespace ProjectAmethyst
             catch { }
         }
 
-        private void saveSettings(object sender, RoutedEventArgs e)
-        {
-            Settings.saveSettings();
-        }
-
         private void poolList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (poolList.SelectedValue == null) return;

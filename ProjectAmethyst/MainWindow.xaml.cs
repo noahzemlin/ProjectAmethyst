@@ -22,12 +22,12 @@ namespace ProjectAmethyst
 
         private MainPage mainPage = new MainPage();
         private GroupEditor groupEditor;
+        private SettingsEditor settingsEditor;
 
         public MainWindow()
         {
 
             AmethystCore.LoadChampions();
-            Settings.init();
 
             InitializeComponent();
 
@@ -46,6 +46,15 @@ namespace ProjectAmethyst
                 groupEditor = new GroupEditor();
             }
             Main.Content = groupEditor;
+        }
+
+        private void menuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            if (settingsEditor == null)
+            {
+                settingsEditor = new SettingsEditor();
+            }
+            Main.Content = settingsEditor;
         }
     }
 }

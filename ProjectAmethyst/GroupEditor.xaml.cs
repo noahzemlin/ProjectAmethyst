@@ -35,6 +35,17 @@ namespace ProjectAmethyst
 
         }
 
+        public void updateGroupList()
+        {
+            foreach (ChampionGroup group in ChampionGroup.groups)
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = group;
+                if (groupList.SelectedIndex == -1) item.IsSelected = true;
+                groupList.Items.Add(item);
+            }
+        }
+
         private void addChamp_Click(object sender, RoutedEventArgs e)
         {
             Champion champ = getSelectedChampion();
@@ -131,6 +142,17 @@ namespace ProjectAmethyst
                 champListBox.Items.Add(champ);
                 champGroup.AddChamp(champ);
             };
+        }
+
+        private void saveGroups(object sender, RoutedEventArgs e)
+        {
+            FileHandle.writeChamps();
+        }
+
+        private void loadGroups(object sender, RoutedEventArgs e)
+        {
+            FileHandle.readChamps();
+            updateGroupList();
         }
     }
 }

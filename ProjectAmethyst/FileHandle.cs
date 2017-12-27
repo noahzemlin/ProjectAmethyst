@@ -1,96 +1,164 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ProjectAmethyst
 {
     public static class FileHandle
     {
         private static String _LOCATION = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ProjectAmethyst\\";
-        private static String _FILENAME = "settings.cfg";
+        private static String _FILENAME = "settings.amts";
+        private static String _CHAMPFILE = "champgroups.amts";
+        public static Settings _settings;
 
-        private static LinkedList<Setting> settings;
-
-        public static void addSetting()
+        public static Settings getDefaultSettings()
         {
-
+            return (
+                new Settings
+                {
+                    startWithWindows = false,
+                    leagueVersion = "kappa",
+                    appVersion = "pre-alpha"
+                });
         }
 
         public static void readSettings()
         {
-            String line;
+            checkDirectory();
             try
             {
-                //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader(_LOCATION + _FILENAME);
+                //Pass the file path and file name to the FileStream constructor
+                FileStream fs = new FileStream(_LOCATION + _FILENAME, FileMode.Open);
 
-                //Read the first line of text
-                line = sr.ReadLine();
+                //Deserialize
+                BinaryFormatter bf = new BinaryFormatter();
 
-                //Continue to read until you reach end of file
-                while (line != null)
+                _settings = (Settings)bf.Deserialize(fs);
+
+                if(_settings == null)
                 {
-                    //write the line to console window
-                    Console.WriteLine(line);
-                    
-                    //Read the next line
-                    line = sr.ReadLine();
+                    _settings = getDefaultSettings();
                 }
 
+                Console.WriteLine(
+                    "Settings Found: \n" + 
+                    "/t" + _settings.appVersion + "\n" +
+                    "/t" + _settings.leagueVersion + "\n" +
+                    "/t" + _settings.startWithWindows + "\n"
+                    );
+
                 //close the file
-                sr.Close();
+                fs.Close();
                 Console.ReadLine();
             }
             catch (Exception e)
             {
-                if (!System.IO.Directory.Exists(_LOCATION))
-                {
-                    Console.WriteLine("Directory did not exist! creating now...");
-                    System.IO.Directory.CreateDirectory(_LOCATION);
-                    Console.WriteLine("Created Directory at: " + _LOCATION);
-                }
-                if (!System.IO.File.Exists(_LOCATION + _FILENAME))
-                {
-                    Console.WriteLine("File did not exist! creating now...");
-                    System.IO.File.Create(_LOCATION + _FILENAME);
-                    Console.WriteLine("Created File at: " + _LOCATION + _FILENAME);
-                }
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
+                Console.WriteLine("Error when reading settings file\n" + e.Message + "\n" + e.StackTrace);
+                _settings = getDefaultSettings();
             }
         }
 
-        public static void writeSettings(String toWrite)
+        public static void writeSettings()
         {
+            checkDirectory();
             try
             {
-
+                BinaryFormatter bf = new BinaryFormatter();
                 //Pass the filepath and filename to the StreamWriter Constructor
-                StreamWriter sw = new StreamWriter(_LOCATION + _FILENAME);
+                FileStream fs = new FileStream(_LOCATION + _FILENAME, FileMode.Create);
 
-                //Write a line of text
-                sw.WriteLine(toWrite);
+                if (_settings == null)
+                {
+                    _settings = getDefaultSettings();
+                }
 
-                //Write a second line of text
-                sw.WriteLine("From the StreamWriter class");
+                //Serialize settings to the stream output
+                bf.Serialize(fs, _settings);
 
                 //Close the file
-                sw.Close();
+                fs.Close();
             }
             catch (Exception e)
             {
-                if (!System.IO.Directory.Exists(_LOCATION))
-                {
-                    Console.WriteLine("Directory did not exist! creating now...");
-                    System.IO.Directory.CreateDirectory(_LOCATION);
-                    Console.WriteLine("Created Directory at: " + _LOCATION);
-                }
+                Console.WriteLine("Error when writing settings file\n" + e.Message + "\n" + e.StackTrace);
             }
-            finally
+        }
+
+        public static void readChamps()
+        {
+            checkChamps();
+            try
             {
-                Console.WriteLine("Completed Successfully. Location: " + _LOCATION + _FILENAME);
+                //Pass the file path and file name to the FileStream constructor
+                FileStream fs = new FileStream(_LOCATION + _CHAMPFILE, FileMode.Open);
+
+                //Deserialize
+                BinaryFormatter bf = new BinaryFormatter();
+
+                ChampionGroup.groups = (List<ChampionGroup>)bf.Deserialize(fs);
+
+                //close the file
+                fs.Close();
+                Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error when reading championGroups file\n" + e.Message + "\n" + e.StackTrace);
+            }
+        }
+
+        public static void writeChamps()
+        {
+            checkChamps();
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                //Pass the filepath and filename to the StreamWriter Constructor
+                FileStream fs = new FileStream(_LOCATION + _CHAMPFILE, FileMode.Create);
+
+                //Serialize settings to the stream output
+                bf.Serialize(fs, ChampionGroup.groups);
+
+                //Close the file
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error when writing championGroups file\n" + e.Message + "\n" + e.StackTrace);
+            }
+        }
+
+        public static void checkDirectory()
+        {
+            if (!System.IO.Directory.Exists(_LOCATION))
+            {
+                Console.WriteLine("Directory did not exist! creating now...");
+                System.IO.Directory.CreateDirectory(_LOCATION);
+                Console.WriteLine("Created Directory at: " + _LOCATION);
+            }
+            if (!System.IO.File.Exists(_LOCATION + _FILENAME))
+            {
+                Console.WriteLine("File did not exist! creating now...");
+                System.IO.File.Create(_LOCATION + _FILENAME);
+                Console.WriteLine("Created File at: " + _LOCATION + _FILENAME);
+                _settings = getDefaultSettings();
+                writeSettings();
+            }
+        }
+        public static void checkChamps()
+        {
+            if (!System.IO.Directory.Exists(_LOCATION))
+            {
+                Console.WriteLine("Directory did not exist! creating now...");
+                System.IO.Directory.CreateDirectory(_LOCATION);
+                Console.WriteLine("Created Directory at: " + _LOCATION);
+            }
+            if (!System.IO.File.Exists(_LOCATION + _CHAMPFILE))
+            {
+                Console.WriteLine("File did not exist! creating now...");
+                System.IO.File.Create(_LOCATION + _CHAMPFILE);
+                Console.WriteLine("Created File at: " + _LOCATION + _CHAMPFILE);
             }
         }
     }

@@ -18,7 +18,6 @@
             <Button x:Name="buttonLAL" Content="Lolalytics" HorizontalAlignment="Left" Margin="196,124,0,0" VerticalAlignment="Top" Width="100" Click="buttonLAL_Click"/>
             <Button x:Name="buttonOPGG" Content="OP.GG" HorizontalAlignment="Left" Margin="196,149,0,0" VerticalAlignment="Top" Width="100" Click="buttonOPGG_Click"/>
             <Button x:Name="buttonCGG" Content="Champion.GG" HorizontalAlignment="Left" Margin="196,174,0,0" VerticalAlignment="Top" Width="100" Click="buttonCGG_Click"/>
-            <Button Content="Save Settings" HorizontalAlignment="Left" Margin="414,69,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings"/>
         </Grid>
         <ComboBox x:Name="poolList" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="poolList_SelectionChanged"/>
         <Label x:Name="poolLabel" Content="Pool" HorizontalAlignment="Left" Margin="339,10,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="20" Width="35"/>

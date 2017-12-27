@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProjectAmethyst
 {
 
-
+    [Serializable]
     class ChampionGroup
     {
         public static List<ChampionGroup> groups = new List<ChampionGroup>();
